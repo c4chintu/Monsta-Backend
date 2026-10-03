@@ -23,6 +23,17 @@ server.use("/uploads/slider", express.static("uploads/slider"));
 server.use("/admin", adminRoutes);
 server.use("/web", webRoutes);
 
+server.get("/", (req, res) => {
+  res.status(200).json({
+    status: true,
+    message: "Furniture Monsta Backend API is running successfully",
+    routes: {
+      admin: "/admin",
+      web: "/web",
+    },
+  });
+});
+
 server.listen(process.env.PORT || 8000, async () => {
   try {
     await dbconntiion();
